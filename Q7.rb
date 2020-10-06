@@ -1,17 +1,32 @@
+require 'date'
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
-  # while the name is not empty, repeat this code
+  name = "jeff"
   while !name.empty? do
-    # add the student hash to the array
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
     # get another name from the user
+    puts "enter name"
     name = gets.chomp
+    break if name.empty?
+    while true do
+      puts "enter cohort"
+      input_cohort = gets.chomp.capitalize
+      if input_cohort == ""
+        input_cohort = "November"
+        break
+      elsif !Date::MONTHNAMES.include?(input_cohort)
+        puts "invalid input"
+      else
+        break
+      end
+    end
+    # add the student hash to the array
+    students << {name: name, cohort: input_cohort.to_sym}
+    puts "Now we have #{students.count} students"
+
   end
   # return the array of students
   students
@@ -24,7 +39,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]}"+ " "*(25-student[:name].length) +"(#{student[:cohort]} cohort)"
   end
 end
 

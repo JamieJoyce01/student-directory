@@ -4,7 +4,7 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.chomp.downcase
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
@@ -22,9 +22,11 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
+def print(students, letter)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name][0] == letter
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
@@ -32,8 +34,9 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+spec_letter = "j"
 students = input_students
 #nothing happens until we call the methods
 print_header
-print(students)
+print(students,spec_letter)
 print_footer(students)

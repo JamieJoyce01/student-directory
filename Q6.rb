@@ -24,7 +24,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]}"+ " "*(25-student[:name].length) +"(#{student[:cohort]} cohort)"
   end
 end
 
